@@ -8,45 +8,74 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>MiniProjectEE</title>
-    <style>
-        .input-row{
-            margin: 8px;
-        }
-        .reg-error{
-            color: red;
-        }
-    </style>
+    <title>Home MiniProject</title>
+    <link rel="stylesheet" href="Home.css">
 </head>
 <body>
-<div class="container">
-    <div class="login">
+<div class="hero">
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+            <button type="button" class="toggle-btn" onclick="register()">Register</button>
+        </div>
+        <div class="social-icons">
+            <img src="login-reg-img/fb.png">
+            <img src="login-reg-img/tw.png">
+            <img src="login-reg-img/gp.png">
+        </div>
+        <form id="login" class="input-group" action="login" method="post">
+            <label for="log_email">  <input type="text" class="input-field" placeholder="User Email" name="log_email" id="log_email" placeholder="User email"required></label><br>
+            <label for="log_password"> <input type="text" class="input-field" placeholder="Enter Password" name="log_password" id="log_password" required></label><br>
+            <input type="checkbox" class="check-box"><span>Remember Password</span>
 
-    </div>
-
-    <div class="registration">
-        <span style="color: aqua">Registration:</span>
-        <form action="register" method="post">
-        <div class="input-row"><label for="reg_name"> User name: <input type="text" name="reg_name" id="reg_name"></label><br></div>
-        <div class="input-row"><label for="reg_surname"> User surname: <input type="text" name="reg_surname" id="reg_surname"></label><br></div>
-        <div class="input-row"><label for="reg_age"> User age: <input type="number"  name="reg_age" id="reg_age"></label><br></div>
-        <div class="input-row"><label for="reg_email"> User email: <input type="text" name="reg_email" id="reg_email"></label><br></div>
-        <div class="input-row"><label for="reg_phone_number"> User phone: <input type="text" name="reg_phone_number" id="reg_phone_number"></label><br></div>
-        <div class="input-row"><label for="reg_password"> User password: <input type="password" name="reg_password" id="reg_password"></label><br></div>
-        <div class="input-row"><label for="reg_gender"> User gender: <select name="reg_gender" id="reg_gender">
-            <option value="MALE">Male</option>
-            <option value="FEMALE">Female</option>
-            <option value="OTHER">Other</option>
-        </select></label><br></div>
-
-            <% if (request.getParameter("reg_error")!=null) { %>
-            <div class="input-row reg-error"><%=request.getParameter("reg_error")%></div>
+            <% if (request.getParameter("log_error")!=null) { %>
+            <div class="input-row log-error"><%=request.getParameter("log_error")%></div>
             <% } %>
 
-
-        <div class="input-row"><button type="submit">Register</button></div>
+            <button type="submit" class="submit-btn">Log In</button>
         </form>
+
+        <form id="register" class="input-group" action="register"  method="post">
+               <label for="reg_name">  <input type="text" class="input-field" name="reg_name" autocomplete="off" id="reg_name" placeholder="User name" required></label><br>
+               <label for="reg_surname"> <input type="text" class="input-field" name="reg_surname" id="reg_surname" placeholder="User surname" required></label><br>
+               <label for="reg_age">  <input type="number" class="input-field"  name="reg_age" id="reg_age" placeholder="User age" required></label><br>
+               <label for="reg_email">  <input type="text" class="input-field" name="reg_email" id="reg_email" placeholder="User email" required></label><br>
+               <label for="reg_phone_number">  <input type="text" class="input-field" name="reg_phone_number" id="reg_phone_number" placeholder="Phone" required></label><br>
+               <label for="reg_password">  <input type="password" class="input-field" name="reg_password" id="reg_password"  placeholder="password"></label><br>
+               <label for="reg_gender"> <select name="reg_gender" class="input-field" id="reg_gender">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                    <option value="OTHER">Other</option>
+                </select></label><br>
+                <input type="checkbox" class="check-box"><span>I agree to the terms &
+                conditions</span>
+
+                <% if (request.getParameter("reg_error")!=null) { %>
+                <div class="input-row reg-error"><%=request.getParameter("reg_error")%></div>
+                <% } %>
+
+            <div class="input-row"><button type="submit" class="submit-btn">Registration</button></div>
+            </form>
     </div>
 </div>
+
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+
+        function register(){
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        } function login(){
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+        }
+
+    </script>
+
 </body>
 </html>
