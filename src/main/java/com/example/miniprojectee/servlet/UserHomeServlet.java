@@ -1,6 +1,7 @@
 package com.example.miniprojectee.servlet;
 
 import com.example.miniprojectee.enums.Gender;
+import com.example.miniprojectee.manager.ArticleManager;
 import com.example.miniprojectee.manager.UserManager;
 import com.example.miniprojectee.models.User;
 import com.example.miniprojectee.util.Md5Util;
@@ -17,21 +18,18 @@ import java.io.IOException;
 public class UserHomeServlet extends HttpServlet {
 
     private UserManager userManager;
+    private ArticleManager articleManager;
 
     @Override
     public void init() throws ServletException {
         userManager = new UserManager();
+        articleManager = new ArticleManager();
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Object currentUser = req.getSession().getAttribute("currentUser");
-        if(currentUser!=null){
-            req.getRequestDispatcher("WEB-INF/userHome.jsp").forward(req, resp);
-        }else {
-            resp.sendRedirect("/MiniProjectEE_war_exploded/home");
-        }
-
+        req.setAttribute("allArticles", articleManager.all());
+        req.getRequestDispatcher("WEB-INF/userHome.jsp").forward(req, resp);
     }
 
 

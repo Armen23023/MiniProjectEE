@@ -93,4 +93,8 @@ public class ArticleManager {
         else System.out.println("Wrong ID");
 
     }
+
+    public Article findById(int id) {
+     return null;
+    }
 }
